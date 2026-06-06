@@ -29,7 +29,7 @@ function handleLogin(event) {
   const passField = document.getElementById("password").value.trim();
 
   if (userField === correctUsername && passField === correctPassword) {
-    loginError.style.style = "none";
+    loginError.style.display = "none"; // Fixed style typo here
     loginOverlay.style.display = "none";
     sessionStorage.setItem("isLoggedIn", "true");
     startDataLoaderEngine();
@@ -91,13 +91,11 @@ function startDataLoaderEngine() {
       if (initialRow["k2_logo"]) {
         document.getElementById("logoLeftContainer").innerHTML = `
           <img src="${initialRow["k2_logo"]}" alt="K2 Logo" class="logo-img">
-          
         `;
       }
       if (initialRow["konkem_logo"]) {
         document.getElementById("logoRightContainer").innerHTML = `
           <img src="${initialRow["konkem_logo"]}" alt="Konkem Logo" class="logo-img">
-          
         `;
       }
 
@@ -106,6 +104,13 @@ function startDataLoaderEngine() {
       // Build Matrix Layout
       const productTree = {};
       rows.forEach(row => {
+        
+        // 🛑 VISIBILITY FILTER CHECK
+        const isVisible = row["Visible"] !== undefined ? row["Visible"] : row["visible"];
+        if (isVisible && String(isVisible).trim().toLowerCase() === "no") {
+          return; // Skip this item/row layout generation completely
+        }
+
         const category = row.Group || "GENERAL PRODUCTS";
         const productNameEng = row["Product Name"] || "Unnamed Product";
 
@@ -134,6 +139,13 @@ function startDataLoaderEngine() {
           shipmentPack: row["Ship Pack"] || "—"
         });
       });
+
+      // Check if visible rows are left after filtering
+      if (Object.keys(productTree).length === 0) {
+        loader.style.display = "none";
+        dataContainer.innerHTML = "<h2>No matching visible data records found in the spreadsheet view.</h2>";
+        return;
+      }
 
       let html = "";
       let overallProductCounter = 0;
