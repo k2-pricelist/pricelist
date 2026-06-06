@@ -3,66 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>INDIA K2 PRICE LIST SYSTEM</title>
+  <title>K2 Pricelist Portal</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Dynamic Header Area -->
-  <header class="header">
-    <div class="header-top">
-      
-      <!-- STRICTLY LOCKED: Left Side Logo Slot -->
-      <div class="brand-logo-left" id="logoLeftContainer">
-        <div class="logo-placeholder">Loading Corporate Graphic...</div>
+  <!-- ========================================== -->
+  <!-- NEW: PROFESSIONAL BRANDED LOGIN INTERFACE  -->
+  <!-- ========================================== -->
+  <div id="loginOverlay" class="login-overlay">
+    <div class="login-card">
+      <div class="login-header">
+        <h2>K2 Pricelist</h2>
+        <p>For access you have to enter correct login details.</p>
       </div>
       
-      <!-- Center Dynamic Titles (Balanced Typography) -->
-      <div class="header-title-center">
-        <h1 id="priceListName">RETAIL PRICE LIST</h1>
-        <p class="wef-date" id="wefDate">W.E.F. --/--/----</p>
-        <p class="change-date" id="changeDate"></p>
-      </div>
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" autocomplete="username" required placeholder="Enter your username">
+        </div>
+        
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" autocomplete="current-password" required placeholder="Enter your password">
+        </div>
 
-      <!-- STRICTLY LOCKED: Right Side Logo Slot -->
-      <div class="brand-logo-right" id="logoRightContainer">
-        <div class="logo-placeholder">Loading Corporate Graphic...</div>
-      </div>
-      
-    </div>
-
-    <!-- Audience/Stamp Boxes -->
-    <div class="audience-boxes">
-      <div class="audience-card">
-        <span class="badge">Distributor</span>
-        <div class="box-body"></div>
-      </div>
-      <div class="audience-card">
-        <span class="badge">Company Person</span>
-        <div class="box-body"></div>
-      </div>
-    </div>
-
-    <button class="pdf-btn" onclick="window.print()">
-      Download PDF / Print Filtered View
-    </button>
-  </header>
-
-  <main id="data">
-    <div class="initial-loading">Connecting to master cloud spreadsheet stream...</div>
-  </main>
-
-  <div id="loader" class="loader-wrapper">
-    <div class="progress-container">
-      <div class="progress-ring"></div>
-      <span id="progressText">0%</span>
+        <div id="loginError" class="login-error-msg" style="display: none;">
+          Invalid username or password. Please try again.
+        </div>
+        
+        <button type="submit" class="login-btn">Secure Login</button>
+      </form>
     </div>
   </div>
 
-  <footer class="footer">
-    <div class="version-tag" id="docVersion">—</div>
-    <div class="copyright-tag">INDIA K2 © 2026</div>
-  </footer>
+  <!-- APP PRELOADER SCREEN -->
+  <div id="loader" class="loader-wrapper" style="display: none;">
+    <div class="progress-container">
+      <div class="progress-ring"></div>
+      <div id="progressText">0%</div>
+    </div>
+  </div>
+
+  <!-- MAIN CATALOG WRAPPER CONTAINER -->
+  <div id="appContainer" style="display: none;">
+    <header class="header">
+      <div class="header-top">
+        <div class="brand-logo-left" id="logoLeftContainer">
+          <div class="logo-placeholder">Loading Corporate Graphic...</div>
+        </div>
+        
+        <div class="header-title-center">
+          <h1 id="priceListName">RETAIL PRICE LIST</h1>
+          <p class="wef-date" id="wefDate">W.E.F. --/--/----</p>
+          <p class="change-date" id="changeDate"></p>
+        </div>
+
+        <div class="brand-logo-right" id="logoRightContainer">
+          <div class="logo-placeholder">Loading Corporate Graphic...</div>
+        </div>
+      </div>
+
+      <div class="audience-boxes">
+        <div class="audience-card"><span class="badge">Distributor</span></div>
+        <div class="audience-card"><span class="badge">Company Person</span></div>
+      </div>
+
+      <button class="pdf-btn" onclick="window.print()">
+        Download PDF / Print Filtered View
+      </button>
+    </header>
+
+    <!-- Target insertion node for sheet layout generator loop -->
+    <main id="data"></main>
+
+    <footer class="footer">
+      <div class="version-tag" id="docVersion">v1.0.0</div>
+      <div class="copyright-tag">© Konkem Industries Pvt Ltd. All Rights Reserved.</div>
+    </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
