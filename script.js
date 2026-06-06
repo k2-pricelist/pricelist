@@ -91,13 +91,13 @@ function startDataLoaderEngine() {
       if (initialRow["k2_logo"]) {
         document.getElementById("logoLeftContainer").innerHTML = `
           <img src="${initialRow["k2_logo"]}" alt="K2 Logo" class="logo-img">
-          <small>RESTRUCTURING KONSTRUCTION. KEMICALLY</small>
+          
         `;
       }
       if (initialRow["konkem_logo"]) {
         document.getElementById("logoRightContainer").innerHTML = `
           <img src="${initialRow["konkem_logo"]}" alt="Konkem Logo" class="logo-img">
-          <small>KONKEM INDUSTRIES PVT LTD<br>A Group Company of JAY</small>
+          
         `;
       }
 
