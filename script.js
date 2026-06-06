@@ -1,6 +1,8 @@
-// --- SECURE LOGIN BOX ENGINE ---
-const correctUsername = "admin";       // 👈 Set your username here
-const correctPassword = "k2north2026";  // 👈 Set your password here
+// ==========================================
+// 1. SECURE LOGIN BOX ENGINE
+// ==========================================
+const correctUsername = "admin";       // 👈 You can change your username here
+const correctPassword = "k2north2026";  // 👈 You can change your password here
 
 // Check if user is already logged in for this session
 if (sessionStorage.getItem("isLoggedIn") !== "true") {
@@ -25,17 +27,11 @@ if (sessionStorage.getItem("isLoggedIn") !== "true") {
   }
 }
 
-// --- YOUR EXISTING PRICELIST CODE CONTINUES BELOW ---
+// ==========================================
+// 2. LIVE DATA STREAM LOGIC
+// ==========================================
+// ⚠️ PASTE YOUR ACTUAL GOOGLE EXEC URL BETWEEN THE QUOTES BELOW:
 const apiURL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
-
-const dataContainer = document.getElementById("data");
-const loader = document.getElementById("loader");
-const progressText = document.getElementById("progressText");
-
-// ... (Keep the rest of your original script.js exactly as it was)
-
-
-const apiURL = "https://script.google.com/macros/s/AKfycbx1IYRxN2dVSlW1PFuUiE5O94DDAnXxCan5yHsnd_nrJ9ZuHgmiDc9gEDCJqlT7Yxa4/exec";
 
 const dataContainer = document.getElementById("data");
 const loader = document.getElementById("loader");
@@ -61,7 +57,7 @@ fetch(apiURL)
       return;
     }
 
-    // Helper function to find a column flexibly
+    // Flexible fallback function to find columns case-insensitively with spaces/underscores ignored
     const getSpreadsheetValue = (row, possibleKeys) => {
       for (let key of possibleKeys) {
         if (row[key] !== undefined && row[key] !== null) return row[key];
@@ -74,7 +70,7 @@ fetch(apiURL)
       return "";
     };
 
-    // 1. Setup Global Headers based on the first available filtered row
+    // Setup Global Headers based on the first available filtered row
     const initialRow = rows[0];
     
     document.getElementById("priceListName").textContent = getSpreadsheetValue(initialRow, ["Pricelist Name", "pricelist_name"]) || "PRICE LIST MASTER";
@@ -91,19 +87,19 @@ fetch(apiURL)
     if (initialRow["k2_logo"]) {
       document.getElementById("logoLeftContainer").innerHTML = `
         <img src="${initialRow["k2_logo"]}" alt="K2 Logo" class="logo-img">
-        
+        <small>RESTRUCTURING KONSTRUCTION. KEMICALLY</small>
       `;
     }
     if (initialRow["konkem_logo"]) {
       document.getElementById("logoRightContainer").innerHTML = `
         <img src="${initialRow["konkem_logo"]}" alt="Konkem Logo" class="logo-img">
-        
+        <small>KONKEM INDUSTRIES PVT LTD<br>A Group Company of JAY</small>
       `;
     }
 
     document.getElementById("docVersion").textContent = initialRow["Versions"] || "";
 
-    // 2. Build the Product Tree Matrix
+    // Build the Product Tree Matrix
     const productTree = {};
 
     rows.forEach(row => {
@@ -139,8 +135,9 @@ fetch(apiURL)
       });
     });
 
-    // 3. Render HTML Layout
+    // Render HTML Layout with strict A4 item counting page-breaks
     let html = "";
+    let overallProductCounter = 0; 
 
     for (const categoryName in productTree) {
       html += `
@@ -152,7 +149,8 @@ fetch(apiURL)
 
       for (const productNameEng in productTree[categoryName]) {
         const product = productTree[categoryName][productNameEng];
-        
+        overallProductCounter++; 
+
         let processedBullets = "";
         if (product.meta.bulletsHindi) {
           const rawString = String(product.meta.bulletsHindi);
@@ -218,6 +216,12 @@ fetch(apiURL)
             </div>
           </div>
         `;
+
+        if (overallProductCounter === 3) {
+          html += `<div class="forced-page-break"></div>`;
+        } else if (overallProductCounter > 3 && (overallProductCounter - 3) % 4 === 0) {
+          html += `<div class="forced-page-break"></div>`;
+        }
       }
       html += `</div>`;
     }
