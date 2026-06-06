@@ -16,11 +16,55 @@ const dataContainer = document.getElementById("data");
 // Page initialization lifecycle check
 document.addEventListener("DOMContentLoaded", () => {
   if (sessionStorage.getItem("isLoggedIn") === "true") {
-    // Already authenticated in this session, skip form
     loginOverlay.style.display = "none";
     startDataLoaderEngine();
+  } else {
+    // Setup the mischievous button listeners if we are on the login page
+    initMischievousButton();
   }
 });
+
+// --- NEW: MISCHIEVOUS RUNAWAY BUTTON LOGIC ---
+function initMischievousButton() {
+  const loginForm = document.getElementById("loginForm");
+  // Find the secure login button inside the form
+  const btn = loginForm.querySelector(".login-btn");
+  const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
+
+  // Add smooth CSS transition movement properties to the button dynamically
+  btn.style.transition = "transform 0.2s ease, background-color 0.2s ease";
+
+  // Function to check if fields are completely filled out
+  const isFormInvalid = () => {
+    return usernameInput.value.trim() === "" || passwordInput.value.trim() === "";
+  };
+
+  // When the mouse hovers or moves near the button area
+  btn.addEventListener("mouseover", () => {
+    if (isFormInvalid()) {
+      // Form is empty! Turn button warning red and make it jump away
+      btn.style.backgroundColor = "#D32F2F"; 
+      
+      // Calculate a random alternative placement coordinate (X and Y axis displacement)
+      const randomX = (Math.random() - 0.5) * 180; // Moves up to 90px left or right
+      const randomY = (Math.random() - 0.5) * 80;  // Moves up to 40px up or down
+      
+      btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    }
+  });
+
+  // Reset the button immediately when the user starts typing details out
+  const resetButton = () => {
+    if (!isFormInvalid()) {
+      btn.style.transform = "translate(0px, 0px)";
+      btn.style.backgroundColor = ""; // Restores K2 Brand Green automatically
+    }
+  };
+
+  usernameInput.addEventListener("input", resetButton);
+  passwordInput.addEventListener("input", resetButton);
+}
 
 // Form processing router
 function handleLogin(event) {
@@ -29,16 +73,22 @@ function handleLogin(event) {
   const passField = document.getElementById("password").value.trim();
 
   if (userField === correctUsername && passField === correctPassword) {
-    loginError.style.display = "none"; // Fixed style typo here
+    loginError.style.display = "none";
     loginOverlay.style.display = "none";
     sessionStorage.setItem("isLoggedIn", "true");
     startDataLoaderEngine();
   } else {
     loginError.style.display = "block";
-    document.getElementById("password").value = ""; // clear password field on error
+    document.getElementById("password").value = ""; 
+    
+    // Reset button tracking on failure layout jump
+    const btn = document.querySelector(".login-btn");
+    btn.style.transform = "translate(0px, 0px)";
+    btn.style.backgroundColor = "";
   }
 }
 
+// ... Keep the rest of your startDataLoaderEngine() function exactly the same below ...
 // Data parser pipeline orchestration
 function startDataLoaderEngine() {
   loader.style.display = "flex";
