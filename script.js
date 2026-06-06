@@ -1,3 +1,40 @@
+// --- SECURE LOGIN BOX ENGINE ---
+const correctUsername = "admin";       // 👈 Set your username here
+const correctPassword = "k2north2026";  // 👈 Set your password here
+
+// Check if user is already logged in for this session
+if (sessionStorage.getItem("isLoggedIn") !== "true") {
+  let authenticated = false;
+  
+  while (!authenticated) {
+    let user = prompt("Enter Username to access the K2 Price List:");
+    let pass = prompt("Enter Password:");
+    
+    if (user === null || pass === null) {
+      // If they click cancel, stop loading the page
+      document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Access Denied. A valid password is required.</h2>";
+      throw new Error("Authentication cancelled by user.");
+    }
+    
+    if (user.trim() === correctUsername && pass.trim() === correctPassword) {
+      authenticated = true;
+      sessionStorage.setItem("isLoggedIn", "true"); // Keeps them logged in until they close the tab
+    } else {
+      alert("Incorrect Username or Password! Please try again.");
+    }
+  }
+}
+
+// --- YOUR EXISTING PRICELIST CODE CONTINUES BELOW ---
+const apiURL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+const dataContainer = document.getElementById("data");
+const loader = document.getElementById("loader");
+const progressText = document.getElementById("progressText");
+
+// ... (Keep the rest of your original script.js exactly as it was)
+
+
 const apiURL = "https://script.google.com/macros/s/AKfycbx1IYRxN2dVSlW1PFuUiE5O94DDAnXxCan5yHsnd_nrJ9ZuHgmiDc9gEDCJqlT7Yxa4/exec";
 
 const dataContainer = document.getElementById("data");
