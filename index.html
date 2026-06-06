@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INDIA K2 PRICE LIST SYSTEM</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Dynamic Header Area -->
+  <header class="header">
+    <div class="header-top">
+      
+      <!-- STRICTLY LOCKED: Left Side Logo Slot -->
+      <div class="brand-logo-left" id="logoLeftContainer">
+        <div class="logo-placeholder">Loading Corporate Graphic...</div>
+      </div>
+      
+      <!-- Center Dynamic Titles (Balanced Typography) -->
+      <div class="header-title-center">
+        <h1 id="priceListName">RETAIL PRICE LIST</h1>
+        <p class="wef-date" id="wefDate">W.E.F. --/--/----</p>
+        <p class="change-date" id="changeDate"></p>
+      </div>
+
+      <!-- STRICTLY LOCKED: Right Side Logo Slot -->
+      <div class="brand-logo-right" id="logoRightContainer">
+        <div class="logo-placeholder">Loading Corporate Graphic...</div>
+      </div>
+      
+    </div>
+
+    <!-- Audience/Stamp Boxes -->
+    <div class="audience-boxes">
+      <div class="audience-card">
+        <span class="badge">Distributor</span>
+        <div class="box-body"></div>
+      </div>
+      <div class="audience-card">
+        <span class="badge">Company Person</span>
+        <div class="box-body"></div>
+      </div>
+    </div>
+
+    <button class="pdf-btn" onclick="window.print()">
+      Download PDF / Print Filtered View
+    </button>
+  </header>
+
+  <main id="data">
+    <div class="initial-loading">Connecting to master cloud spreadsheet stream...</div>
+  </main>
+
+  <div id="loader" class="loader-wrapper">
+    <div class="progress-container">
+      <div class="progress-ring"></div>
+      <span id="progressText">0%</span>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="version-tag" id="docVersion">—</div>
+    <div class="copyright-tag">INDIA K2 © 2026</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

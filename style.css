@@ -1,0 +1,382 @@
+:root {
+  --primary-green: #7E9E4C;
+  --teal-accent: #64D2B7;
+  --text-dark: #222222;
+  --border-light: #CCCCCC;
+  --bg-row: #F4F6F4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-dark);
+  background-color: #FAFAFA;
+  padding: 15px;
+  font-size: 11px; 
+}
+
+/* Header Setup */
+.header {
+  background: #FFFFFF;
+  padding: 15px;
+  border-bottom: 2px dotted #000000;
+  margin-bottom: 15px;
+}
+
+/* Flexbox Row Configuration forcing left-center-right strict distribution */
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 15px;
+}
+
+/* FIXED LOGO ALIGNMENT RULES */
+.brand-logo-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Forces content inside to align left always */
+  text-align: left;
+  flex: 0 0 200px;
+  order: 1; /* Locked first */
+}
+
+.brand-logo-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Forces content inside to align right always */
+  text-align: right;
+  flex: 0 0 200px;
+  order: 3; /* Locked last */
+}
+
+.logo-img {
+  max-width: 100%;
+  height: auto;
+  max-height: 50px; 
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.brand-logo-left small, .brand-logo-right small {
+  display: block;
+  font-size: 8px; 
+  color: #555555;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+/* DYNAMIC CENTER TITLE SECTION */
+.header-title-center {
+  text-align: center;
+  flex: 1;
+  order: 2; /* Locked in middle */
+}
+
+.header-title-center h1 {
+  font-size: 19px; /* Slightly decreased from 22px to keep it sleek and non-intrusive */
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #000000;
+  line-height: 1.2; /* Normal natural line spacing */
+}
+
+.wef-date {
+  font-weight: bold;
+  margin-top: 5px;
+  font-size: 12px; 
+  line-height: 1.2; /* Normal line spacing */
+}
+
+.change-date {
+  font-size: 10px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* Stamp Boxes */
+.audience-boxes {
+  display: flex;
+  gap: 15px;
+  margin: 10px 0 5px;
+}
+
+.audience-card {
+  flex: 1;
+  border: 1px solid #000000;
+  position: relative;
+  height: 45px;
+  background: #FFFFFF;
+}
+
+.audience-card .badge {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #5D5A4E;
+  color: #FFFFFF;
+  padding: 1px 15px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 2px;
+}
+
+.pdf-btn {
+  margin-top: 10px;
+  padding: 8px 20px;
+  background: var(--primary-green);
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Categories Banner Layout */
+.category-section {
+  margin-bottom: 20px;
+}
+
+.category-header {
+  text-align: center;
+  background-color: var(--teal-accent);
+  padding: 6px;
+  margin-bottom: 10px;
+}
+
+.category-header h2 {
+  font-size: 14px; 
+  color: #000000;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* Product Structure Row */
+.product-row {
+  display: flex;
+  align-items: flex-start;
+  background: var(--bg-row);
+  border-bottom: 1px solid var(--border-light);
+  padding: 10px;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+
+.prod-details-col {
+  flex: 1.8;
+  display: flex;
+  flex-direction: column;
+}
+
+.prod-title-block h3 {
+  font-size: 13px; 
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #000000;
+  display: inline-block;
+}
+
+.title-hindi {
+  font-size: 12px; 
+  color: #222222;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+.hsn-code {
+  display: block;
+  font-size: 10px;
+  color: var(--primary-green);
+  font-weight: bold;
+  margin-top: 1px;
+}
+
+.prod-desc-english {
+  font-size: 11px; 
+  color: #444444;
+  margin-top: 4px;
+  line-height: 1.25;
+}
+
+/* Hindi Box Content Layout */
+.prod-desc-hindi-box {
+  font-size: 11px;
+  color: #111111;
+  margin-top: 6px;
+  background: #EAEAEA;
+  padding: 6px 10px;
+  border-radius: 4px;
+  line-height: 1.35;
+}
+
+.hindi-text-desc {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.hindi-bullet-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.hindi-bullet-list li {
+  display: block;
+  clear: both;
+  margin-bottom: 2px;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* Pricing Grid Tables */
+.prod-pricing-col {
+  flex: 2.5;
+}
+
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #FFFFFF;
+}
+
+.pricing-table th, .pricing-table td {
+  border: 1px solid #AAAAAA;
+  padding: 4px 4px;
+  font-size: 10px; 
+  text-align: center;
+}
+
+.pricing-table th {
+  background-color: var(--primary-green);
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.pricing-table td small {
+  font-size: 8.5px; 
+}
+
+.pricing-table tbody tr:nth-child(even) {
+  background-color: #F9F9F9;
+}
+
+/* Product Image Graphics Column */
+.prod-image-col {
+  flex: 0 0 140px; 
+  height: 110px;   
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent; 
+  border: none;            
+  padding: 2px;
+}
+
+.prod-image-col img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.no-img {
+  font-size: 9px;
+  color: #999;
+}
+
+/* Page Break Engine Component */
+.forced-page-break {
+  display: block;
+  height: 0;
+  page-break-before: always;
+  break-before: page;
+}
+
+/* Footer Element */
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 10px 0;
+  border-top: 1px solid #DDD;
+}
+
+.version-tag {
+  font-size: 8px;
+  color: #777777;
+  font-family: monospace;
+}
+
+.copyright-tag {
+  font-size: 10px;
+  color: #555555;
+}
+
+/* Preloader Screen Wrapper UI */
+.loader-wrapper {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.progress-container { position: relative; width: 50px; height: 50px; }
+.progress-ring {
+  width: 100%; height: 100%;
+  border: 5px solid #EEE; border-top: 5px solid var(--primary-green);
+  border-radius: 50%; animation: spin 1s linear infinite;
+}
+#progressText {
+  position: absolute; inset: 0; display: flex;
+  align-items: center; justify-content: center; font-size: 11px; font-weight: bold;
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Strict PDF Print Layout Settings */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 10mm 10mm 10mm; 
+  }
+  body {
+    background: #FFFFFF;
+    padding: 0;
+  }
+  .pdf-btn, .loader-wrapper {
+    display: none !important;
+  }
+  .product-row {
+    background: #FFFFFF !important;
+    border: 1px solid #777777;
+    break-inside: avoid;
+  }
+  .prod-desc-hindi-box {
+    background: #F0F0F0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .pricing-table th {
+    background-color: var(--primary-green) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .category-header {
+    background-color: var(--teal-accent) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    break-after: avoid;
+  }
+  .forced-page-break {
+    display: block !important;
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+}
