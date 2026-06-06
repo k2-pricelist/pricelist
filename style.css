@@ -20,7 +20,110 @@ body {
   font-size: 11px; 
 }
 
-/* Header Setup */
+/* ========================================== */
+/* NEW: BRANDED LOGIN INTERFACE STYLES        */
+/* ========================================== */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #EFEFEF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.login-card {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 400px;
+  padding: 35px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-top: 5px solid var(--primary-green);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.login-header h2 {
+  font-size: 24px;
+  color: #000000;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.login-header p {
+  font-size: 11.5px;
+  color: #666666;
+  line-height: 1.4;
+}
+
+.input-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #444444;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 13px;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  color: var(--text-dark);
+  background-color: #FFFFFF;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group input:focus {
+  border-color: var(--teal-accent);
+  box-shadow: 0 0 0 3px rgba(100, 210, 183, 0.15);
+}
+
+.login-error-msg {
+  font-size: 11px;
+  font-weight: bold;
+  color: #D32F2F;
+  background-color: #FFEBEE;
+  padding: 8px 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-green);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+  background-color: #6B883F;
+}
+
+/* Header Layout System */
 .header {
   background: #FFFFFF;
   padding: 15px;
@@ -28,7 +131,6 @@ body {
   margin-bottom: 15px;
 }
 
-/* Flexbox Row Configuration forcing left-center-right strict distribution */
 .header-top {
   display: flex;
   justify-content: space-between;
@@ -37,23 +139,22 @@ body {
   gap: 15px;
 }
 
-/* FIXED LOGO ALIGNMENT RULES */
 .brand-logo-left {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Forces content inside to align left always */
+  align-items: flex-start; 
   text-align: left;
   flex: 0 0 200px;
-  order: 1; /* Locked first */
+  order: 1; 
 }
 
 .brand-logo-right {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Forces content inside to align right always */
+  align-items: flex-end; 
   text-align: right;
   flex: 0 0 200px;
-  order: 3; /* Locked last */
+  order: 3; 
 }
 
 .logo-img {
@@ -73,26 +174,25 @@ body {
   line-height: 1.2;
 }
 
-/* DYNAMIC CENTER TITLE SECTION */
 .header-title-center {
   text-align: center;
   flex: 1;
-  order: 2; /* Locked in middle */
+  order: 2; 
 }
 
 .header-title-center h1 {
-  font-size: 19px; /* Slightly decreased from 22px to keep it sleek and non-intrusive */
+  font-size: 19px; 
   font-weight: 800;
   letter-spacing: 0.5px;
   color: #000000;
-  line-height: 1.2; /* Normal natural line spacing */
+  line-height: 1.2; 
 }
 
 .wef-date {
   font-weight: bold;
   margin-top: 5px;
   font-size: 12px; 
-  line-height: 1.2; /* Normal line spacing */
+  line-height: 1.2; 
 }
 
 .change-date {
@@ -271,7 +371,7 @@ body {
 /* Product Image Graphics Column */
 .prod-image-col {
   flex: 0 0 140px; 
-  height: 110px;   
+  height: 140px;   
   display: flex;
   align-items: center;
   justify-content: center;
@@ -350,7 +450,7 @@ body {
     background: #FFFFFF;
     padding: 0;
   }
-  .pdf-btn, .loader-wrapper {
+  .pdf-btn, .loader-wrapper, .login-overlay {
     display: none !important;
   }
   .product-row {
