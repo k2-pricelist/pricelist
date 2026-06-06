@@ -323,23 +323,19 @@ body {
   margin-bottom: 3px;
 }
 
-/* UPDATED: Clean layout container for the list */
+/* FIX: Let native HTML bullets manage the layout cleanly */
 .hindi-bullet-list {
-  list-style-type: none;
-  padding-left: 0;
+  list-style-type: disc;      /* Uses native professional round bullets */
+  padding-left: 14px;         /* Creates uniform gutter space on the left */
   margin-top: 4px;
 }
 
-/* UPDATED: Creates the beautiful hanging indent alignment */
 .hindi-bullet-list li {
-  display: block;
-  margin-bottom: 3px;
+  display: list-item;         /* Restores native list formatting engine */
+  margin-bottom: 4px;
   font-weight: 500;
   text-align: left;
-  
-  padding-left: 12px;       /* 1. Makes space on the left for the bullet */
-  text-indent: -12px;       /* 2. Pulls only the very first line back by that same space */
-  line-height: 1.4;         /* 3. Adds a comfortable line spacing for wrapped text */
+  line-height: 1.4;           /* Generous spacing for multi-line descriptions */
 }
 
 /* Pricing Grid Tables */
