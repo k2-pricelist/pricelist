@@ -166,10 +166,11 @@ function startDataLoaderEngine() {
             const structuralLines = rawString.split(/[\n•]+/);
             const cleanLines = structuralLines.map(l => l.trim().replace(/^[•\-\*\s]+/, "")).filter(l => l !== "");
             if (cleanLines.length > 0) {
-              processedBullets = `<ul class="hindi-bullet-list">` + cleanLines.map(l => `<li>• ${l}</li>`).join('') + `</ul>`;
+              // REMOVED THE HARDCODED BULLET CHARACTER FROM THE LI TEXT STRING HERE:
+              processedBullets = `<ul class="hindi-bullet-list">` + cleanLines.map(l => `<li>${l}</li>`).join('') + `</ul>`;
             }
           }
-
+          
           html += `
             <div class="product-row">
               <div class="prod-details-col">
