@@ -13,52 +13,91 @@ const loader = document.getElementById("loader");
 const progressText = document.getElementById("progressText");
 const dataContainer = document.getElementById("data");
 
+// --- TIMEOUT SECURITY ENGINE CONFIGURATION ---
+let sessionTimeoutTimer;
+const TIMEOUT_DURATION = 35000; // 35 seconds in milliseconds
+
 // Page initialization lifecycle check
 document.addEventListener("DOMContentLoaded", () => {
   if (sessionStorage.getItem("isLoggedIn") === "true") {
     loginOverlay.style.display = "none";
     startDataLoaderEngine();
+    startSessionTimeoutTracker(); // Start monitoring activity once logged in
   } else {
     // Setup the mischievous button listeners if we are on the login page
     initMischievousButton();
   }
 });
 
+// --- AUTOMATED SESSION TIMEOUT ENGINE ---
+function startSessionTimeoutTracker() {
+  // Clear any existing timers first to prevent memory duplicates
+  clearTimeout(sessionTimeoutTimer);
+
+  // Set the structural trigger to fire after 35 seconds of total inactivity
+  sessionTimeoutTimer = setTimeout(() => {
+    triggerAutoLogout();
+  }, TIMEOUT_DURATION);
+
+  // List of user actions that count as "activity" to reset the 35-second countdown
+  const activityEvents = ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'];
+  
+  const resetTimerOnActivity = () => {
+    clearTimeout(sessionTimeoutTimer);
+    sessionTimeoutTimer = setTimeout(() => {
+      triggerAutoLogout();
+    }, TIMEOUT_DURATION);
+  };
+
+  // Bind the event triggers globally to the DOM window tree
+  activityEvents.forEach(event => {
+    window.addEventListener(event, resetTimerOnActivity, { passive: true });
+  });
+}
+
+function triggerAutoLogout() {
+  // Clear authorization credentials instantly
+  sessionStorage.removeItem("isLoggedIn");
+  
+  // Reset structural display views to lock the application state
+  appContainer.style.display = "none";
+  loginOverlay.style.display = "flex";
+  
+  // Show a clean timeout message inside your existing error card component
+  loginError.textContent = "Session timed out due to 35 seconds of inactivity. Please re-authenticate.";
+  loginError.style.display = "block";
+  
+  // Reset input fields securely
+  document.getElementById("username").value = "";
+  document.getElementById("password").value = "";
+}
+
 // --- MISCHIEVOUS RUNAWAY BUTTON LOGIC ---
 function initMischievousButton() {
   const loginForm = document.getElementById("loginForm");
-  // Find the secure login button inside the form
   const btn = loginForm.querySelector(".login-btn");
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
 
-  // Add smooth CSS transition movement properties to the button dynamically
   btn.style.transition = "transform 0.2s ease, background-color 0.2s ease";
 
-  // Function to check if fields are completely filled out
   const isFormInvalid = () => {
     return usernameInput.value.trim() === "" || passwordInput.value.trim() === "";
   };
 
-  // When the mouse hovers or moves near the button area
   btn.addEventListener("mouseover", () => {
     if (isFormInvalid()) {
-      // Form is empty! Turn button warning red and make it jump away
       btn.style.backgroundColor = "#D32F2F"; 
-      
-      // Calculate a random alternative placement coordinate (X and Y axis displacement)
-      const randomX = (Math.random() - 0.5) * 180; // Moves up to 90px left or right
-      const randomY = (Math.random() - 0.5) * 80;  // Moves up to 40px up or down
-      
+      const randomX = (Math.random() - 0.5) * 180; 
+      const randomY = (Math.random() - 0.5) * 80;  
       btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
   });
 
-  // Reset the button immediately when the user starts typing details out
   const resetButton = () => {
     if (!isFormInvalid()) {
       btn.style.transform = "translate(0px, 0px)";
-      btn.style.backgroundColor = ""; // Restores K2 Brand Green automatically
+      btn.style.backgroundColor = ""; 
     }
   };
 
@@ -77,11 +116,12 @@ function handleLogin(event) {
     loginOverlay.style.display = "none";
     sessionStorage.setItem("isLoggedIn", "true");
     startDataLoaderEngine();
+    startSessionTimeoutTracker(); // Kick off tracker on successful interface submission
   } else {
+    loginError.textContent = "Invalid username or password. Access Denied.";
     loginError.style.display = "block";
     document.getElementById("password").value = ""; 
     
-    // Reset button tracking on failure layout jump
     const btn = document.querySelector(".login-btn");
     btn.style.transform = "translate(0px, 0px)";
     btn.style.backgroundColor = "";
@@ -153,11 +193,9 @@ function startDataLoaderEngine() {
       // Build Matrix Layout
       const productTree = {};
       rows.forEach(row => {
-        
-        // 🛑 VISIBILITY FILTER CHECK
         const isVisible = row["Visible"] !== undefined ? row["Visible"] : row["visible"];
         if (isVisible && String(isVisible).trim().toLowerCase() === "no") {
-          return; // Skip this item/row layout generation completely
+          return; 
         }
 
         const category = row.Group || "GENERAL PRODUCTS";
@@ -189,7 +227,6 @@ function startDataLoaderEngine() {
         });
       });
 
-      // Check if visible rows are left after filtering
       if (Object.keys(productTree).length === 0) {
         loader.style.display = "none";
         dataContainer.innerHTML = "<h2>No matching visible data records found in the spreadsheet view.</h2>";
@@ -211,7 +248,6 @@ function startDataLoaderEngine() {
           if (product.meta.bulletsHindi) {
             const rawString = String(product.meta.bulletsHindi);
             const structuralLines = rawString.split(/[\n•]+/);
-            // Sanitized cleanly to stop ghost bullet fragments
             const cleanLines = structuralLines.map(l => l.trim().replace(/^[•\-\*\s]+/, "")).filter(l => l !== "");
             if (cleanLines.length > 0) {
               processedBullets = `<ul class="hindi-bullet-list">` + cleanLines.map(l => `<li>${l}</li>`).join('') + `</ul>`;
@@ -262,8 +298,6 @@ function startDataLoaderEngine() {
               </div>
             </div>
           `;
-          // ⚠️ FIXED: Hardcoded forced-page-break logic removed entirely.
-          // The CSS media print engine now manages pagination dynamically based on space.
         }
         html += `</div>`;
       }
