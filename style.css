@@ -251,6 +251,9 @@ body {
   background-color: var(--teal-accent);
   padding: 6px;
   margin-bottom: 10px;
+  /* DYNAMIC PRINT SETTING: Prevent category title from being left alone at page bottoms */
+  break-after: avoid;
+  page-break-after: avoid;
 }
 
 .category-header h2 {
@@ -269,6 +272,12 @@ body {
   padding: 10px;
   margin-bottom: 10px;
   gap: 12px;
+  
+  /* CRITICAL DYNAMIC AUTO-DECISION SETTING: */
+  /* Keeps the product card together. If it doesn't fit on the current page, */
+  /* the print engine automatically moves the whole card to the next page. */
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .prod-details-col {
@@ -458,7 +467,9 @@ body {
   .product-row {
     background: #FFFFFF !important;
     border: 1px solid #777777;
-    break-inside: avoid;
+    /* DYNAMIC AUTO-DECISION SETTING IN ACTION */
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
   }
   .prod-desc-hindi-box {
     background: #F0F0F0 !important;
@@ -474,11 +485,11 @@ body {
     background-color: var(--teal-accent) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
-    break-after: avoid;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
   }
   .forced-page-break {
-    display: block !important;
-    page-break-before: always !important;
-    break-before: page !important;
+    /* Set to none to hand over full control to the browser auto-decision layout */
+    display: none !important;
   }
 }
