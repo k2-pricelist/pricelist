@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// --- NEW: MISCHIEVOUS RUNAWAY BUTTON LOGIC ---
+// --- MISCHIEVOUS RUNAWAY BUTTON LOGIC ---
 function initMischievousButton() {
   const loginForm = document.getElementById("loginForm");
   // Find the secure login button inside the form
@@ -88,7 +88,6 @@ function handleLogin(event) {
   }
 }
 
-// ... Keep the rest of your startDataLoaderEngine() function exactly the same below ...
 // Data parser pipeline orchestration
 function startDataLoaderEngine() {
   loader.style.display = "flex";
@@ -198,7 +197,6 @@ function startDataLoaderEngine() {
       }
 
       let html = "";
-      let overallProductCounter = 0;
 
       for (const categoryName in productTree) {
         html += `
@@ -208,15 +206,14 @@ function startDataLoaderEngine() {
 
         for (const productNameEng in productTree[categoryName]) {
           const product = productTree[categoryName][productNameEng];
-          overallProductCounter++;
 
           let processedBullets = "";
           if (product.meta.bulletsHindi) {
             const rawString = String(product.meta.bulletsHindi);
             const structuralLines = rawString.split(/[\n•]+/);
+            // Sanitized cleanly to stop ghost bullet fragments
             const cleanLines = structuralLines.map(l => l.trim().replace(/^[•\-\*\s]+/, "")).filter(l => l !== "");
             if (cleanLines.length > 0) {
-              // REMOVED THE HARDCODED BULLET CHARACTER FROM THE LI TEXT STRING HERE:
               processedBullets = `<ul class="hindi-bullet-list">` + cleanLines.map(l => `<li>${l}</li>`).join('') + `</ul>`;
             }
           }
@@ -265,12 +262,8 @@ function startDataLoaderEngine() {
               </div>
             </div>
           `;
-
-          if (overallProductCounter === 3) {
-            html += `<div class="forced-page-break"></div>`;
-          } else if (overallProductCounter > 3 && (overallProductCounter - 3) % 4 === 0) {
-            html += `<div class="forced-page-break"></div>`;
-          }
+          // ⚠️ FIXED: Hardcoded forced-page-break logic removed entirely.
+          // The CSS media print engine now manages pagination dynamically based on space.
         }
         html += `</div>`;
       }
