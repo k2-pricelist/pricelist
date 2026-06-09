@@ -15,7 +15,7 @@ const dataContainer = document.getElementById("data");
 
 // --- TIMEOUT SECURITY ENGINE CONFIGURATION ---
 let sessionTimeoutTimer;
-const TIMEOUT_DURATION = 35000; // 35 seconds in milliseconds
+const TIMEOUT_DURATION = 300000; // UPDATED: 5 minutes in milliseconds (5 * 60 * 1000)
 
 // Page initialization lifecycle check
 document.addEventListener("DOMContentLoaded", () => {
@@ -34,12 +34,12 @@ function startSessionTimeoutTracker() {
   // Clear any existing timers first to prevent memory duplicates
   clearTimeout(sessionTimeoutTimer);
 
-  // Set the structural trigger to fire after 35 seconds of total inactivity
+  // Set the structural trigger to fire after 5 minutes of total inactivity
   sessionTimeoutTimer = setTimeout(() => {
     triggerAutoLogout();
   }, TIMEOUT_DURATION);
 
-  // List of user actions that count as "activity" to reset the 35-second countdown
+  // List of user actions that count as "activity" to reset the 5-minute countdown
   const activityEvents = ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'];
   
   const resetTimerOnActivity = () => {
@@ -64,7 +64,7 @@ function triggerAutoLogout() {
   loginOverlay.style.display = "flex";
   
   // Show a clean timeout message inside your existing error card component
-  loginError.textContent = "Session timed out due to 35 seconds of inactivity. Please re-authenticate.";
+  loginError.textContent = "Session timed out due to 5 minutes of inactivity. Please re-authenticate.";
   loginError.style.display = "block";
   
   // Reset input fields securely
