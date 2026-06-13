@@ -381,8 +381,8 @@ body {
 
 /* Product Image Graphics Column */
 .prod-image-col {
-  flex: 0 0 1800 px;         /* Proportional structural layout box */
-  height: 1800 px;           
+  flex: 0 0 240 px;         /* Proportional structural layout box */
+  height: 240 px;           
   display: flex;
   align-items: center;
   justify-content: center;
