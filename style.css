@@ -381,8 +381,8 @@ body {
 
 /* Product Image Graphics Column */
 .prod-image-col {
-  flex: 0 0 160px;         /* Match proportional width aspect of 1600px */
-  height: 240px;           /* Match proportional height aspect of 2400px */
+  flex: 0 0 180px;         /* Increased width to 180px to safely clear the specifications badges */
+  height: 240px;           /* Maintains 2400px height proportional aspect matching your file */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -393,12 +393,11 @@ body {
 }
 
 .prod-image-col img {
-  width: 1600px;           /* Sets source target render parameters */
-  height: 2400px;          
-  max-width: 100%;         /* Constrains asset execution layout smoothly */
-  max-height: 100%;        
-  object-fit: cover;       
-  transform: scale(1.35);  
+  width: 100%;
+  height: 100%;
+  max-width: 1600px;       /* Sets file execution limits based on your specifications */
+  max-height: 2400px;        
+  object-fit: contain;     /* AUTO SET ENGINE: Guarantees 100% of the bag and badges are perfectly visible without cropping */
 }
 
 .no-img {
