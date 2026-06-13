@@ -381,23 +381,24 @@ body {
 
 /* Product Image Graphics Column */
 .prod-image-col {
-  flex: 0 0 240 px;         /* Proportional structural layout box */
-  height: 240 px;           
+  flex: 0 0 160px;         /* Match proportional width aspect of 1600px */
+  height: 240px;           /* Match proportional height aspect of 2400px */
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent; 
   border: none;            
-  padding: 2px;              
+  padding: 0;              
   overflow: hidden;        
 }
 
 .prod-image-col img {
-  width: auto;             /* Auto scale settings to adapt cleanly */
-  height: auto;          
-  max-width: 100%;         
+  width: 1600px;           /* Sets source target render parameters */
+  height: 2400px;          
+  max-width: 100%;         /* Constrains asset execution layout smoothly */
   max-height: 100%;        
-  object-fit: contain;     /* CRITICAL: Safely guarantees NO cropping occurs anywhere */
+  object-fit: cover;       
+  transform: scale(1.35);  
 }
 
 .no-img {
