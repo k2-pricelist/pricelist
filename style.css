@@ -396,7 +396,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;       /* Forces the product to fill space, naturally clipping blank side areas */
-  transform: scale(1.35);  /* Zooms past the large transparent padding built into the image file */
+  transform: scale (0.35);  /* Zooms past the large transparent padding built into the image file */
 }
 
 .no-img {
