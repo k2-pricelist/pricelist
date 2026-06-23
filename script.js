@@ -254,21 +254,15 @@ function startDataLoaderEngine() {
             }
           }
           
-          html += `
+html += `
             <div class="product-row">
-              <div class="prod-details-col">
+              <div class="prod-title-col">
                 <div class="prod-title-block">
                   <h3>${productNameEng}</h3>
                   ${product.meta.productNameHindi ? `<span class="title-hindi">(${product.meta.productNameHindi})</span>` : ''}
-                  <span class="hsn-code">HSN Code - ${product.meta.hsn}</span>
                 </div>
                 ${product.meta.descEng ? `<div class="prod-desc-english">${product.meta.descEng}</div>` : ''}
-                ${(product.meta.descHindi || processedBullets) ? `
-                  <div class="prod-desc-hindi-box">
-                    ${product.meta.descHindi ? `<div class="hindi-text-desc">${product.meta.descHindi}</div>` : ''}
-                    ${processedBullets}
-                  </div>
-                ` : ''}
+                <span class="hsn-code">HSN: ${product.meta.hsn}</span>
               </div>
 
               <div class="prod-pricing-col">
@@ -291,6 +285,11 @@ function startDataLoaderEngine() {
                     `).join('')}
                   </tbody>
                 </table>
+              </div>
+
+              <div class="prod-bullets-col">
+                ${product.meta.descHindi ? `<div class="hindi-text-desc">${product.meta.descHindi}</div>` : ''}
+                ${processedBullets}
               </div>
 
               <div class="prod-image-col">
