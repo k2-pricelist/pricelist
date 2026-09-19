@@ -1,0 +1,520 @@
+:root {
+  --primary-green: #7E9E4C;
+  --teal-accent: #64D2B7;
+  --text-dark: #222222;
+  --border-light: #CCCCCC;
+  --bg-row: #F4F6F4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-dark);
+  background-color: #FAFAFA;
+  padding: 15px;
+  font-size: 11px; 
+}
+
+/* ========================================== */
+/* NEW: BRANDED LOGIN INTERFACE STYLES        */
+/* ========================================== */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #EFEFEF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.login-card {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 400px;
+  padding: 35px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-top: 5px solid var(--primary-green);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.login-header h2 {
+  font-size: 24px;
+  color: #000000;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.login-header p {
+  font-size: 11.5px;
+  color: #666666;
+  line-height: 1.4;
+}
+
+.input-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #444444;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 13px;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  color: var(--text-dark);
+  background-color: #FFFFFF;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group input:focus {
+  border-color: var(--teal-accent);
+  box-shadow: 0 0 0 3px rgba(100, 210, 183, 0.15);
+}
+
+.login-error-msg {
+  font-size: 11px;
+  font-weight: bold;
+  color: #D32F2F;
+  background-color: #FFEBEE;
+  padding: 8px 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-green);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+  background-color: #6B883F;
+}
+
+/* Header Layout System */
+.header {
+  background: #FFFFFF;
+  padding: 5px 0px;
+  margin-bottom: 15px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 15px;
+}
+
+.brand-logo-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  text-align: left;
+  flex: 0 0 200px;
+  order: 1; 
+}
+
+.brand-logo-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  text-align: right;
+  flex: 0 0 200px;
+  order: 3; 
+}
+
+.logo-img {
+  max-width: 100%;
+  height: auto;
+  max-height: 50px; 
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.brand-logo-left small, .brand-logo-right small {
+  display: block;
+  font-size: 8px; 
+  color: #555555;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+.header-title-center {
+  text-align: center;
+  flex: 1;
+  order: 2; 
+}
+
+.header-title-center h1 {
+  font-size: 18px; 
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #000000;
+  line-height: 1.2; 
+}
+
+.wef-date {
+  font-weight: bold;
+  margin-top: 5px;
+  font-size: 12px; 
+  line-height: 1.2; 
+}
+
+.change-date {
+  font-size: 10px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* Stamp Boxes */
+.audience-boxes {
+  display: flex;
+  gap: 15px;
+  margin: 10px 0 5px;
+}
+
+.audience-card {
+  flex: 1;
+  border: 1px solid #000000;
+  position: relative;
+  height: 29px;
+  background: #FFFFFF;
+}
+
+.audience-card .badge {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #5D5A4E;
+  color: #FFFFFF;
+  padding: 1px 15px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 2px;
+}
+
+.pdf-btn {
+  margin-top: 50px;
+  padding: 5px 10px;
+  background: var(--primary-green);
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Categories Banner Layout */
+.category-section {
+  margin-bottom: 20px;
+}
+
+.category-header {
+  text-align: center;
+  background-color: var(--teal-accent);
+  padding: 6px;
+  margin-bottom: 10px;
+  /* DYNAMIC PRINT SETTING: Prevent category title from being left alone at page bottoms */
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.category-header h2 {
+  font-size: 14px; 
+  color: #000000;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* ========================================================================== */
+/* PRODUCT STRUCTURE ROW - LARGER IMAGES & COMPACT VERTICAL SPACING           */
+/* ========================================================================== */
+.product-row {
+  display: flex;
+  align-items: stretch;    /* Automatically matches all column heights perfectly */
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 0px 0px;        /* Tightened to save vertical room */
+  margin-bottom: 2px;      /* Reduced from 8px to 5px to guarantee 6-7 page max */
+  gap: 4px;
+  
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Column 1: Left Corporate Title Bracket */
+.prod-title-col {
+  flex: 1.1;
+  background-color: var(--bg-row);
+  border-left: 4px solid var(--primary-green);
+  border-radius: 4px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.prod-title-block h3 {
+  font-size: 11px; 
+  font-weight: 800;
+  color: #000000;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.title-hindi {
+  font-size: 9.5px; 
+  color: #333333;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.prod-desc-english {
+  font-size: 8.5px; 
+  color: #555555;
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.hsn-code {
+  margin-top: auto; /* Pushes HSN code perfectly to the bottom of the box */
+  display: block;
+  font-size: 8px;
+  color: #222222;
+  font-weight: bold;
+}
+
+/* Column 2: Data Matrix / Pricing Tables */
+.prod-pricing-col {
+  flex: 2.6;         
+  display: flex;
+  align-items: flex-start;
+}
+
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #FFFFFF;
+}
+
+.pricing-table th, .pricing-table td {
+  border: 1px solid #CCCCCC;
+  padding: 2.5px 4px; /* Shaved cell padding to compensate for larger images */
+  font-size: 9px; 
+  text-align: center;
+  vertical-align: middle;
+}
+
+.pricing-table th {
+  background-color: var(--primary-green);
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 8.5px;
+}
+
+.pricing-table td {
+  white-space: nowrap; 
+}
+
+.pricing-table td strong {
+  font-weight: 700;
+}
+
+.pricing-table td small {
+  font-size: 7.5px; 
+  color: #666666;
+}
+
+.pricing-table tbody tr:nth-child(even) {
+  background-color: #FAFAFA;
+}
+
+/* Column 3: Bullet Features Technical Column */
+.prod-bullets-col {
+  flex: 2.1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2px 4px;
+}
+
+.hindi-text-desc {
+  font-size: 9px;
+  font-weight: bold;
+  color: #111111;
+  margin-bottom: 3px;
+  line-height: 1.15;
+}
+
+.hindi-bullet-list {
+  list-style-type: disc;
+  padding-left: 11px;
+  margin-top: 0;
+}
+
+.hindi-bullet-list li {
+  font-size: 8.5px;
+  color: #333333;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+/* Column 4: ENLARGED Product Image Display Graphic */
+.prod-image-col {
+  flex: 0 0 90px;   /* Increased from 65px to 90px wide */
+  height: 90px;     /* Increased from 70px to 90px tall for high clarity */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent; 
+  overflow: hidden; 
+  align-self: center;
+}
+
+.prod-image-col img {
+  width: 150%;
+  height: 100%;
+  object-fit: contain; /* Keeps original proportions sharp without distortion */
+}
+
+.no-img {
+  font-size: 8px;
+  color: #999999;
+  border: 1px dashed #DDDDDD;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+/* Page Break Engine Component */
+.forced-page-break {
+  display: block;
+  height: 0;
+  page-break-before: always;
+  break-before: page;
+}
+
+/* Footer Element */
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 10px 0;
+  border-top: 1px solid #DDD;
+}
+
+.version-tag {
+  font-size: 8px;
+  color: #777777;
+  font-family: monospace;
+}
+
+.copyright-tag {
+  font-size: 10px;
+  color: #555555;
+}
+
+/* Preloader Screen Wrapper UI */
+.loader-wrapper {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.progress-container { position: relative; width: 50px; height: 50px; }
+.progress-ring {
+  width: 100%; height: 100%;
+  border: 5px solid #EEE; border-top: 5px solid var(--primary-green);
+  border-radius: 50%; animation: spin 1s linear infinite;
+}
+#progressText {
+  position: absolute; inset: 0; display: flex;
+  align-items: center; justify-content: center; font-size: 11px; font-weight: bold;
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Strict PDF Print Layout Settings */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 2.54mm 2.54mm 2.54mm 2.54mm; 
+  }
+  body {
+    background: #FFFFFF;
+    padding: 0;
+  }
+  .pdf-btn, .loader-wrapper, .login-overlay {
+    display: none !important;
+  }
+  .product-row {
+    background: #FFFFFF !important;
+    border: 1px solid #777777;
+    /* DYNAMIC AUTO-DECISION SETTING IN ACTION */
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  .prod-desc-hindi-box {
+    background: #F0F0F0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .pricing-table th {
+    background-color: var(--primary-green) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .category-header {
+    background-color: var(--teal-accent) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+  .forced-page-break {
+    /* Set to none to hand over full control to the browser auto-decision layout */
+    display: none !important;
+  }
+}
